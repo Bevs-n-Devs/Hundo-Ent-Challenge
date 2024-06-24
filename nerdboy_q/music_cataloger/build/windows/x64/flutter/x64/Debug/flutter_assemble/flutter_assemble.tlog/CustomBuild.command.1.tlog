@@ -1,0 +1,28 @@
+^C:\USERS\PRINC\REPOS\BEVSNDEVS\HUNDO-ENT-CHALLENGE\NERDBOY_Q\MUSIC_CATALOGER\BUILD\WINDOWS\X64\CMAKEFILES\86345BB82545EFC9572E36EA6E4D278D\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\Users\princ\OneDrive\Desktop\ProgrammingPractice\apps\flutter\flutter PROJECT_DIR=C:\Users\princ\Repos\BevsNDevs\Hundo-Ent-Challenge\nerdboy_q\music_cataloger FLUTTER_ROOT=C:\Users\princ\OneDrive\Desktop\ProgrammingPractice\apps\flutter\flutter FLUTTER_EPHEMERAL_DIR=C:\Users\princ\Repos\BevsNDevs\Hundo-Ent-Challenge\nerdboy_q\music_cataloger\windows\flutter\ephemeral PROJECT_DIR=C:\Users\princ\Repos\BevsNDevs\Hundo-Ent-Challenge\nerdboy_q\music_cataloger FLUTTER_TARGET=C:\Users\princ\Repos\BevsNDevs\Hundo-Ent-Challenge\nerdboy_q\music_cataloger\lib\main.dart DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ==,RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC9jNGNkNDhlMTg2NDYwYjMyZDQ0NTg1Y2UzYzEwMzI3MWFiNjc2MzU1Lw== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=C:\Users\princ\Repos\BevsNDevs\Hundo-Ent-Challenge\nerdboy_q\music_cataloger\.dart_tool\package_config.json C:/Users/princ/OneDrive/Desktop/ProgrammingPractice/apps/flutter/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\PRINC\REPOS\BEVSNDEVS\HUNDO-ENT-CHALLENGE\NERDBOY_Q\MUSIC_CATALOGER\BUILD\WINDOWS\X64\CMAKEFILES\A8F14B3888040211747D7D019098AF98\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\PRINC\REPOS\BEVSNDEVS\HUNDO-ENT-CHALLENGE\NERDBOY_Q\MUSIC_CATALOGER\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/princ/Repos/BevsNDevs/Hundo-Ent-Challenge/nerdboy_q/music_cataloger/windows -BC:/Users/princ/Repos/BevsNDevs/Hundo-Ent-Challenge/nerdboy_q/music_cataloger/build/windows/x64 --check-stamp-file C:/Users/princ/Repos/BevsNDevs/Hundo-Ent-Challenge/nerdboy_q/music_cataloger/build/windows/x64/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\princ\Repos\BevsNDevs\Hundo-Ent-Challenge\nerdboy_q\music_cataloger\build\windows\x64\CMakeFiles\a8ef4c226016014274eaba3c56ee5d28\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{71640BFE-FE86-3486-9713-906A382F1DE5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

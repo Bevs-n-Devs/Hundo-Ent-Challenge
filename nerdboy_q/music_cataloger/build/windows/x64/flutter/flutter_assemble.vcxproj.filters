@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\princ\Repos\BevsNDevs\Hundo-Ent-Challenge\nerdboy_q\music_cataloger\build\windows\x64\CMakeFiles\86345bb82545efc9572e36ea6e4d278d\flutter_windows.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\princ\Repos\BevsNDevs\Hundo-Ent-Challenge\nerdboy_q\music_cataloger\build\windows\x64\CMakeFiles\a8f14b3888040211747d7d019098af98\flutter_assemble.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\princ\Repos\BevsNDevs\Hundo-Ent-Challenge\nerdboy_q\music_cataloger\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\princ\Repos\BevsNDevs\Hundo-Ent-Challenge\nerdboy_q\music_cataloger\build\windows\x64\flutter\CMakeFiles\flutter_assemble" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{71640BFE-FE86-3486-9713-906A382F1DE5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
