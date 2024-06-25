@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:music_cataloger/utils/helpers.dart';
 import 'package:music_cataloger/utils/styles.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final String hintText;
-  const CustomTextField({super.key, required this.hintText});
+  final Function(String,FieldType) callback;
+  final FieldType fieldType;
+  const CustomTextField({super.key, required this.hintText, required this.callback, required this.fieldType});
+  
+  @override
+  State<StatefulWidget> createState() => _CustomTextFldState();
+}
+
+class _CustomTextFldState extends State<CustomTextField> {
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: boxDecoration_purpleAccent,
-      child: SizedBox(
+  void initState() {
+    super.initState();
+  }
+
+  @override
+    Widget build(BuildContext context) {
+      return Container(
+        decoration: boxDecoration_purpleAccent,
+        child: SizedBox(
           width: 400,
           height: 50,
           child: TextField(
+            onChanged: (value) {
+              widget.callback(value, widget.fieldType);
+            },
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.deepPurple,
@@ -21,7 +37,7 @@ class CustomTextField extends StatelessWidget {
               shadows: [BoxShadowPurple]
             ),
             decoration: InputDecoration(
-              hintText: hintText,
+              hintText: widget.hintText,
               filled: true,
               fillColor: Colors.white,
               border: OutlineInputBorder(
@@ -32,7 +48,7 @@ class CustomTextField extends StatelessWidget {
               )
             ),
           ),
-      ),
-    );
-  }
+        ),
+      );
+    }
 }

@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:music_cataloger/screens/entry_screen.dart';
+import 'package:music_cataloger/utils/helpers.dart';
 import 'package:music_cataloger/utils/styles.dart';
 
 class CustomDropdownMenu extends StatefulWidget {
   final List<String> opts;
-  const CustomDropdownMenu({super.key, required this.opts});
-  
+  final Function(String, FieldType) callback;
+  final FieldType fieldType;
+  const CustomDropdownMenu(
+    {
+      super.key, 
+      required this.opts, 
+      required this.callback,
+      required this.fieldType
+    }
+  );
+
   @override
   State<CustomDropdownMenu> createState() => _CustomDropdownMenuState();
 }
@@ -40,6 +50,7 @@ class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
               onChanged: (String? value) {
                 setState(() {
                   dropdownValue = value!;
+                  widget.callback(dropdownValue, widget.fieldType);
                 });
               },
               value: dropdownValue,
