@@ -1,11 +1,15 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:music_cataloger/models/audio_record.dart';
+import 'package:music_cataloger/utils/helpers.dart';
 import 'package:music_cataloger/widgets/date_picker_fld.dart';
 import 'package:music_cataloger/widgets/form_dropdown_menu.dart';
 import 'package:music_cataloger/widgets/form_text_input.dart';
 
-class EntryScreen extends StatelessWidget {
+class EntryScreen extends StatefulWidget {
   static String routeName = "/entry_screen";
   static const List<String> freqOpts = [
     "44.1 kHz",
@@ -25,37 +29,101 @@ class EntryScreen extends StatelessWidget {
     "Re-release",
     "Revised Re-release",
   ];
-
   const EntryScreen({super.key});
+  
+  @override
+  State<StatefulWidget> createState() => _EntryScreenState();
+}
+
+class _EntryScreenState extends State<EntryScreen> {
+
+  Map<FieldType, dynamic> record = {
+    FieldType.fieldAlbumName: '', 
+    FieldType.fieldArtistName: '', 
+    FieldType.fieldGenreName: '',  
+    FieldType.fieldTrackName: '', 
+    FieldType.fieldFrequency: '', 
+    FieldType.fieldReleaseType: '', 
+    FieldType.fieldReleaseDate: '', 
+  };
+  List<String> get releaseTypes => EntryScreen.releaseTypes; 
+  List<String> get albumTypes => EntryScreen.albumTypes; 
+  List<String> get freqOpts => EntryScreen.freqOpts; 
+
+  void updateRecord(String value, FieldType fieldType) {
+    setState(() {
+      record[fieldType] = value;
+      print("Submitting records: $record");
+    });
+  } 
+
+  void submitRecord(String value){
+    setState(() {
+      print(record);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color.fromARGB(199, 13, 10, 18),
-      body: Row(
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(199, 13, 10, 18),
+      body: Column(
         children: [
-          Padding(padding: EdgeInsets.all(15)),
-          Column(
+          Row(
             children: [
-              FormTextInput(labelText: "Track Name"),
-              FormTextInput(labelText: "Album Name"),
-              FormTextInput(labelText: "Artist Name"),
-              FormDropDownInput(labelText: "Album Type", options: albumTypes)
-            ]
-
+              const Padding(padding: EdgeInsets.all(15)),
+              Column(
+                children: [
+                  FormTextInput(labelText: "Track Name", callback: updateRecord, fieldType: FieldType.fieldTrackName,),
+                  FormTextInput(labelText: "Album Name", callback: updateRecord, fieldType: FieldType.fieldAlbumName,),
+                  FormTextInput(labelText: "Artist Name", callback: updateRecord, fieldType: FieldType.fieldArtistName,),
+                  FormDropDownInput(labelText: "Album Type", options: albumTypes, callback: updateRecord, fieldType: FieldType.fieldAlbumType,)
+                ]
+          
+              ),
+              const Padding(padding: EdgeInsets.all(15)),
+              Column(
+                children:[
+                  FormTextInput(labelText: "Genre", callback: updateRecord, fieldType: FieldType.fieldGenreName,),
+                  FormDropDownInput(labelText: "Frequency", options: freqOpts, callback: updateRecord, fieldType: FieldType.fieldFrequency,),
+                  FormDropDownInput(labelText: "Release Type", options: releaseTypes, callback: updateRecord, fieldType: FieldType.fieldReleaseType,),
+                  // CustomDatePicker(restorationId: 'releaseDate',)
+                ]
+              ),
+            ],
           ),
-          Padding(padding: EdgeInsets.all(15)),
-          Column(
-            children:[
-              FormTextInput(labelText: "Genre"),
-              FormTextInput(labelText: "Song Title"),
-              FormDropDownInput(labelText: "Frequency", options: freqOpts),
-              FormDropDownInput(labelText: "Release Type", options: releaseTypes),
-              // CustomDatePicker(restorationId: 'releaseDate',)
-            ]
-          ),
+          const Padding(padding: EdgeInsets.all(15)),
+          Row(
+            children: [
+              const Padding(padding: EdgeInsets.all(15)),
+              Center(
+                widthFactor: 6,
+                child: ElevatedButton(
+                  onPressed: () {
+                    submitRecord("test");
+                  },
+                  style: ButtonStyle(
+                    shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)
+                      )
+                    ),
+                    
+                    backgroundColor: const MaterialStatePropertyAll(Colors.white),
+                  ),
+                  child: const Text(
+                    "Submit Record", 
+                    style: TextStyle(
+                      color: Colors.deepPurple
+                    ),
+                  )
+                ),
+              )
+            ],
+          )
         ],
       ),
       
     );
   }
+
 }
