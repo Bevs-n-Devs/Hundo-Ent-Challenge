@@ -45,88 +45,84 @@
       <p class="w3-opacity w3-center"><i>Complete the survey below</i></p><br>
 
       <ul class="w3-ul w3-border w3-white w3-text-grey">
-        <form action="{{ url_for('home') }}" method="post"></form>
-        <p id="audio_name">
+        <form action="{{ url_for('home') }}" method="post">
+          <p id="track_name">
             Please enter the name of the audio file.
-            <input type="text" placeholder="Auido Name" name="audio_name" required>
-        </p>
-        <p id="audio_year">
+            <input type="text" placeholder="Track Name" name="track_name" required>
+          </p>
+          <p id="album_name">
+            Please enter the name of the album.
+            <input type="text" placeholder="Album Name" name="album_name" required>
+          </p>
+          <p id="artist_name">
+            Please enter the name of the artist.
+            <input type="text" placeholder="Artist Name" name="artist_name" required>
+          </p>
+          <p id="audio_year">
             Please enter the year the audio track was made.
             <input type="number" placeholder="Enter the year" min="1900" max="2099" step="1" value="2024" name="audio_year" required>
-        </p>
-        <p id="audio_options">
-            Please select ther type of media format:
-            <select name="audio_options" id="audio_options" required>
-                <option value="">Please Select</option>
-                <option value="vinyl">Vinyl</option>
-                <option value="cd">CD</option>
-                <option value="cassette">Cassette</option>
-                <option value="digital">Digital</option>
-                <option value="other">Other</option>
-            </select>
-        </p>
-        <p id="audio_options">
+          </p>
+          <p id="audio_options">
             Enter the genre for the audio file
-            <input type="text" name="audio_genre" id="audio_genre">
-        </p>
-        <p id="audio_frame_rate">
-            <!-- might need to change to dropdown selection for clarity -->
-            Please select the frame rate for your aduio file <br>
-            <b><label for="44.1 kHz">44.1 kHz</label></b>
-            <input type="radio" name="audio_frame_rate" id="44.1 kHz" value="44.1 kHz" required>
-            <b><label for="48 kHz">48 kHz</label></b>
-            <input type="radio" name="audio_frame_rate" id="48 kHz" value="48 kHz" required>
-            <b><label for="128 kHz">128 kHz</label></b>
-            <input type="radio" name="audio_frame_rate" id="128 kHz" value="128 kHz" required>
-            <b><label for="192 kHz">192 kHz</label></b>
-            <input type="radio" name="audio_frame_rate" id="192 kHz" value="192 kHz" required>
-            <b><label for="256 kHz">256 kHz</label></b>
-            <input type="radio" name="audio_frame_rate" id="256 kHz" value="256 kHz" required>
-        </p>
-        <p id="audio_condition">
-            Please add any additional notes
-            <textarea name="audio_condition" id="audio_condition" cols="50" rows="10"></textarea>
-        </p>
-        <p id="upload_audio">
-            Please upload your audio file
-            <input type="file" name="upload_audio" id="upload_audio" type="file">
-        </p>
-        <button type="submit">Complete Survey</button>
+            <input type="text" name="audio_genre" id="audio_genre" placeholder="Music genre" required>
+          </p>
+          <p>
+            Please select the Album Type: 
+            <select name="album_type" id="album_type" required>
+              <option value="">Select</option>
+              <option value="album">Album</option>
+              <option value="vinyl">Vinyl</option>
+              <option value="stream">Stream</option>
+            </select>
+          </p>
+          <p>
+            Please select the Release Type: 
+            <select name="release_type" id="release_type" required>
+              <option value="">Select</option>
+              <option value="original">Original</option>
+              <option value="cover">Cover</option>
+              <option value="reRelease">Re-release</option>
+              <option value="revistedReRelease">Revisited Re-release</option>
+            </select>
+          </p>
+          <p id="audio_frame_rate">
+              <!-- might need to change to dropdown selection for clarity -->
+            Please select the frame rate for your aduio file
+              <!-- <b><label for="44.1 kHz">44.1 kHz</label></b>
+              <input type="radio" name="audio_frame_rate" id="44.1 kHz" value="44.1 kHz" required>
+              <b><label for="48 kHz">48 kHz</label></b>
+              <input type="radio" name="audio_frame_rate" id="48 kHz" value="48 kHz" required>
+              <b><label for="128 kHz">128 kHz</label></b>
+              <input type="radio" name="audio_frame_rate" id="128 kHz" value="128 kHz" required>
+              <b><label for="192 kHz">192 kHz</label></b>
+              <input type="radio" name="audio_frame_rate" id="192 kHz" value="192 kHz" required>
+              <b><label for="256 kHz">256 kHz</label></b>
+              <input type="radio" name="audio_frame_rate" id="256 kHz" value="256 kHz" required> -->
+            <select name="audio_frame_rate" id="audio_frame_rate" required>
+              <option value="">Select</option>
+              <option value="44.1 kHz">44.1 kHz</option>
+              <option value="48 kHz">48 kHz</option>
+              <option value="128 kHz">128 kHz</option>
+              <option value="192 kHz">192 kHz</option>
+              <option value="256 kHz">256 kHz</option>
+            </select>
+          </p>
+          <p id="audio_condition">
+              Please add any additional notes
+              <textarea name="audio_notes" id="audio_notes" cols="50" rows="5"></textarea>
+          </p>
+          <!-- <p id="upload_audio">
+              Please upload your audio file
+              <input type="file" name="upload_audio" id="upload_audio" type="file">
+          </p> -->
+          <button type="submit">Complete Survey</button>
+        </form>
+        
 
-      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-        <div class="w3-third w3-margin-bottom">
-          <img src="/w3images/newyork.jpg" alt="New York" style="width:100%" class="w3-hover-opacity">
-          <div class="w3-container w3-white">
-            <p><b>New York</b></p>
-            <p class="w3-opacity">Fri 27 Nov 2016</p>
-            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-          </div>
-        </div>
-        <div class="w3-third w3-margin-bottom">
-          <img src="/w3images/paris.jpg" alt="Paris" style="width:100%" class="w3-hover-opacity">
-          <div class="w3-container w3-white">
-            <p><b>Paris</b></p>
-            <p class="w3-opacity">Sat 28 Nov 2016</p>
-            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-          </div>
-        </div>
-        <div class="w3-third w3-margin-bottom">
-          <img src="/w3images/sanfran.jpg" alt="San Francisco" style="width:100%" class="w3-hover-opacity">
-          <div class="w3-container w3-white">
-            <p><b>San Francisco</b></p>
-            <p class="w3-opacity">Sun 29 Nov 2016</p>
-            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    
 
   <!-- Ticket Modal -->
-  <div id="ticketModal" class="w3-modal">
+  <!-- <div id="ticketModal" class="w3-modal">
     <div class="w3-modal-content w3-animate-top w3-card-4">
       <header class="w3-container w3-teal w3-center w3-padding-32"> 
         <span onclick="document.getElementById('ticketModal').style.display='none'" 
@@ -143,10 +139,10 @@
         <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- The Contact Section -->
-  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+  <!-- <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
     <h2 class="w3-wide w3-center">Contact Me</h2>
     <p class="w3-opacity w3-center"><i>Need to get in touch? Drop a note!</i></p>
     <div class="w3-row w3-padding-32">
@@ -171,5 +167,5 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
 {% endblock %}
