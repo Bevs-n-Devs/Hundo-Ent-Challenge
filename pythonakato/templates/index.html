@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Archive Survey
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+<!-- The About Section -->
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="About">
+    <h2 class="w3-wide">About Us</h2>
+    <p class="w3-opacity"><i>We love music</i></p>
+    <p class="w3-justify">This application is designed to assist archival catalogers in simplifying their notes when cataloging audio files. The application provides a user-friendly interface for entering standardized information about audio media, such as name, year, type of media, genre, frame rate, condition, and more. Upon completion, the application generates a text file with the cataloging details for easy archival and reference.</p>
+    <p class="w3-justify">Simply follow the following instructions:
+        <ul>Enter the name of the audio file.</ul>
+        <ul>Enter the year of the recording.</ul>
+        <ul>Select the type of media from the dropdown menu.</ul>
+        <ul>Enter the genre of the audio file.</ul>
+        <ul>Select the frame rate from the options provided.</ul>
+        <ul>Enter the condition of the media.</ul>
+        <ul>Upload your music file!</ul>
+    </p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-third">
+        <p>Pick your music</p>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7IPQnYbNd4FGDMa07oXGxSfIaP6JDp8CA7Q&s" class="w3-round w3-margin-bottom" alt="Select music file image" style="width:60%">
+      </div>
+      <div class="w3-third">
+        <p>Complete survey</p>
+        <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/completed-survey-2100751-1765081.png" class="w3-round w3-margin-bottom" alt="Survey completed image" style="width:60%">
+      </div>
+      <div class="w3-third">
+        <p>Upload music</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/9834/9834889.png" class="w3-round" alt="Upload music image" style="width:60%">
+      </div>
+    </div>
+  </div>
+
+  <!-- The Survey Section -->
+  <div class="w3-black" id="survey">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">Survey</h2>
+      <p class="w3-opacity w3-center"><i>Complete the survey below</i></p><br>
+
+      <ul class="w3-ul w3-border w3-white w3-text-grey">
+        <form action="{{ url_for('home') }}" method="post">
+          <p id="track_name">
+            Please enter the name of the audio file.
+            <input type="text" placeholder="Track Name" name="track_name" required>
+          </p>
+          <p id="album_name">
+            Please enter the name of the album.
+            <input type="text" placeholder="Album Name" name="album_name" required>
+          </p>
+          <p id="artist_name">
+            Please enter the name of the artist.
+            <input type="text" placeholder="Artist Name" name="artist_name" required>
+          </p>
+          <p id="audio_year">
+            Please enter the year the audio track was made.
+            <input type="number" placeholder="Enter the year" min="1900" max="2099" step="1" value="2024" name="audio_year" required>
+          </p>
+          <p id="audio_options">
+            Enter the genre for the audio file
+            <input type="text" name="audio_genre" id="audio_genre" placeholder="Music genre" required>
+          </p>
+          <p>
+            Please select the Album Type: 
+            <select name="album_type" id="album_type" required>
+              <option value="">Select</option>
+              <option value="album">Album</option>
+              <option value="vinyl">Vinyl</option>
+              <option value="stream">Stream</option>
+            </select>
+          </p>
+          <p>
+            Please select the Release Type: 
+            <select name="release_type" id="release_type" required>
+              <option value="">Select</option>
+              <option value="original">Original</option>
+              <option value="cover">Cover</option>
+              <option value="reRelease">Re-release</option>
+              <option value="revistedReRelease">Revisited Re-release</option>
+            </select>
+          </p>
+          <p id="audio_frame_rate">
+              <!-- might need to change to dropdown selection for clarity -->
+            Please select the frame rate for your aduio file
+              <!-- <b><label for="44.1 kHz">44.1 kHz</label></b>
+              <input type="radio" name="audio_frame_rate" id="44.1 kHz" value="44.1 kHz" required>
+              <b><label for="48 kHz">48 kHz</label></b>
+              <input type="radio" name="audio_frame_rate" id="48 kHz" value="48 kHz" required>
+              <b><label for="128 kHz">128 kHz</label></b>
+              <input type="radio" name="audio_frame_rate" id="128 kHz" value="128 kHz" required>
+              <b><label for="192 kHz">192 kHz</label></b>
+              <input type="radio" name="audio_frame_rate" id="192 kHz" value="192 kHz" required>
+              <b><label for="256 kHz">256 kHz</label></b>
+              <input type="radio" name="audio_frame_rate" id="256 kHz" value="256 kHz" required> -->
+            <select name="audio_frame_rate" id="audio_frame_rate" required>
+              <option value="">Select</option>
+              <option value="44.1 kHz">44.1 kHz</option>
+              <option value="48 kHz">48 kHz</option>
+              <option value="128 kHz">128 kHz</option>
+              <option value="192 kHz">192 kHz</option>
+              <option value="256 kHz">256 kHz</option>
+            </select>
+          </p>
+          <p id="audio_condition">
+              Please add any additional notes
+              <textarea name="audio_notes" id="audio_notes" cols="50" rows="5"></textarea>
+          </p>
+          <!-- <p id="upload_audio">
+              Please upload your audio file
+              <input type="file" name="upload_audio" id="upload_audio" type="file">
+          </p> -->
+          <button type="submit">Complete Survey</button>
+        </form>
+        
+
+    
+
+  <!-- Ticket Modal -->
+  <!-- <div id="ticketModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4">
+      <header class="w3-container w3-teal w3-center w3-padding-32"> 
+        <span onclick="document.getElementById('ticketModal').style.display='none'" 
+       class="w3-button w3-teal w3-xlarge w3-display-topright">×</span>
+        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Tickets</h2>
+      </header>
+      <div class="w3-container">
+        <p><label><i class="fa fa-shopping-cart"></i> Tickets, $15 per person</label></p>
+        <input class="w3-input w3-border" type="text" placeholder="How many?">
+        <p><label><i class="fa fa-user"></i> Send To</label></p>
+        <input class="w3-input w3-border" type="text" placeholder="Enter email">
+        <button class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">PAY <i class="fa fa-check"></i></button>
+        <button class="w3-button w3-red w3-section" onclick="document.getElementById('ticketModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
+        <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- The Contact Section -->
+  <!-- <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+    <h2 class="w3-wide w3-center">Contact Me</h2>
+    <p class="w3-opacity w3-center"><i>Need to get in touch? Drop a note!</i></p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
+        <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
+        <i class="fa fa-envelope" style="width:30px"> </i> SPILL: @johnnyhundo<br>
+      </div>
+      <div class="w3-col m6">
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+        </form>
+      </div>
+    </div>
+  </div> -->
+{% endblock %}
