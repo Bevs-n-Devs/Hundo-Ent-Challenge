@@ -24,7 +24,7 @@ class _CustomTextFldState extends State<CustomTextField> {
       return Container(
         decoration: boxDecoration_purpleAccent,
         child: SizedBox(
-          width: 400,
+          width: 300,
           height: 50,
           child: TextField(
             onChanged: (value) {

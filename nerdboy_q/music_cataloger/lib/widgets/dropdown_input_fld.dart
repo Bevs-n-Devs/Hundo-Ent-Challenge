@@ -30,7 +30,7 @@ class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
     return Container(
       decoration: boxDecoration_purpleAccent,
       child: SizedBox(
-        width: 400,
+        width: 300,
         height: 50,
         child: 
           Material(
