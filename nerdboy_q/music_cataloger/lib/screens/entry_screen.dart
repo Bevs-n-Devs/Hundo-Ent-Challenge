@@ -29,6 +29,11 @@ class EntryScreen extends StatefulWidget {
     "Re-release",
     "Revised Re-release",
   ];
+  static const List<String> mediaTypes = [
+    "Casette",
+    "CD",
+    "Vinyl",
+  ];
   const EntryScreen({super.key});
   
   @override
@@ -45,8 +50,10 @@ class _EntryScreenState extends State<EntryScreen> {
     FieldType.fieldFrequency: '', 
     FieldType.fieldReleaseType: '', 
     FieldType.fieldReleaseDate: '', 
+    FieldType.fieldMediaType: '', 
   };
   List<String> get releaseTypes => EntryScreen.releaseTypes; 
+  List<String> get mediaTypes => EntryScreen.mediaTypes; 
   List<String> get albumTypes => EntryScreen.albumTypes; 
   List<String> get freqOpts => EntryScreen.freqOpts; 
 
@@ -65,9 +72,13 @@ class _EntryScreenState extends State<EntryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
+  screen_height = MediaQuery.of(context).size.height;
+  screen_width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color.fromARGB(199, 13, 10, 18),
-      body: Column(
+      body: screen_width > 600 
+      ? Column(
         children: [
           Row(
             children: [
@@ -77,7 +88,7 @@ class _EntryScreenState extends State<EntryScreen> {
                   FormTextInput(labelText: "Track Name", callback: updateRecord, fieldType: FieldType.fieldTrackName,),
                   FormTextInput(labelText: "Album Name", callback: updateRecord, fieldType: FieldType.fieldAlbumName,),
                   FormTextInput(labelText: "Artist Name", callback: updateRecord, fieldType: FieldType.fieldArtistName,),
-                  FormDropDownInput(labelText: "Album Type", options: albumTypes, callback: updateRecord, fieldType: FieldType.fieldAlbumType,)
+                  FormDropDownInput(labelText: "Album Type", options: albumTypes, callback: updateRecord, fieldType: FieldType.fieldAlbumType,),
                 ]
           
               ),
@@ -87,6 +98,7 @@ class _EntryScreenState extends State<EntryScreen> {
                   FormTextInput(labelText: "Genre", callback: updateRecord, fieldType: FieldType.fieldGenreName,),
                   FormDropDownInput(labelText: "Frequency", options: freqOpts, callback: updateRecord, fieldType: FieldType.fieldFrequency,),
                   FormDropDownInput(labelText: "Release Type", options: releaseTypes, callback: updateRecord, fieldType: FieldType.fieldReleaseType,),
+                  FormDropDownInput(labelText: "Media Type", options: mediaTypes, callback: updateRecord, fieldType: FieldType.fieldMediaType,),
                   // CustomDatePicker(restorationId: 'releaseDate',)
                 ]
               ),
@@ -97,7 +109,7 @@ class _EntryScreenState extends State<EntryScreen> {
             children: [
               const Padding(padding: EdgeInsets.all(15)),
               Center(
-                widthFactor: 6,
+                widthFactor: 4,
                 child: ElevatedButton(
                   onPressed: () {
                     submitRecord("test");
@@ -121,8 +133,54 @@ class _EntryScreenState extends State<EntryScreen> {
             ],
           )
         ],
+      )
+      : Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  FormTextInput(labelText: "Track Name", callback: updateRecord, fieldType: FieldType.fieldTrackName,),
+                  FormTextInput(labelText: "Album Name", callback: updateRecord, fieldType: FieldType.fieldAlbumName,),
+                  FormTextInput(labelText: "Artist Name", callback: updateRecord, fieldType: FieldType.fieldArtistName,),
+                  FormDropDownInput(labelText: "Album Type", options: albumTypes, callback: updateRecord, fieldType: FieldType.fieldAlbumType,),
+               
+                  FormTextInput(labelText: "Genre", callback: updateRecord, fieldType: FieldType.fieldGenreName,),
+                  FormDropDownInput(labelText: "Frequency", options: freqOpts, callback: updateRecord, fieldType: FieldType.fieldFrequency,),
+                  FormDropDownInput(labelText: "Release Type", options: releaseTypes, callback: updateRecord, fieldType: FieldType.fieldReleaseType,),
+                  FormDropDownInput(labelText: "Media Type", options: mediaTypes, callback: updateRecord, fieldType: FieldType.fieldMediaType,),
+                  // CustomDatePicker(restorationId: 'releaseDate',)
+                  const Padding(padding: EdgeInsets.all(15)),
+              Center(
+                // widthFactor: 4,
+                child: ElevatedButton(
+                  onPressed: () {
+                    submitRecord("test");
+                  },
+                  style: ButtonStyle(
+                    shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)
+                      )
+                    ),
+                    
+                    backgroundColor: const MaterialStatePropertyAll(Colors.white),
+                  ),
+                  child: const Text(
+                    "Submit Record", 
+                    style: TextStyle(
+                      color: Colors.deepPurple
+                    ),
+                  )
+                ),
+              )
+                ]
+              ),
+            ],
+          ),
+        ],
       ),
-      
     );
   }
 
