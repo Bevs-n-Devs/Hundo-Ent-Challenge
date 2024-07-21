@@ -42,130 +42,254 @@
   <div class="w3-black" id="survey">
     <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
       <h2 class="w3-wide w3-center">Survey</h2>
+      {% if ok_message %}
+        <p>{{ ok_message }}</p>
+      {% endif %}
       <p class="w3-opacity w3-center"><i>Complete the survey below</i></p><br>
 
       <ul class="w3-ul w3-border w3-white w3-text-grey">
         <form action="{{ url_for('home') }}" method="post">
           <p id="track_name">
-            Please enter the name of the audio file.
-            <input type="text" placeholder="Track Name" name="track_name" required>
+            <b>Please enter the name of the audio file.</b>
+            <input type="text" placeholder="Music Name" name="music_name" required>
           </p>
-          <p id="album_name">
-            Please enter the name of the album.
-            <input type="text" placeholder="Album Name" name="album_name" required>
+          <p id="genre_type">
+            <b>Enter the genre for the audio file</b>
+            <input type="text" name="genre_type" id="genre_type" placeholder="Genre Type" required>
           </p>
           <p id="artist_name">
-            Please enter the name of the artist.
-            <input type="text" placeholder="Artist Name" name="artist_name" required>
-          </p>
-          <p id="audio_year">
-            Please enter the year the audio track was made.
-            <input type="number" placeholder="Enter the year" min="1900" max="2099" step="1" value="2024" name="audio_year" required>
-          </p>
-          <p id="audio_options">
-            Enter the genre for the audio file
-            <input type="text" name="audio_genre" id="audio_genre" placeholder="Music genre" required>
+            <b>Please enter the name of the artist.</b>
+            <input type="text" placeholder="Artist Name" name="artist_name" id="artist_name" required>
           </p>
           <p>
-            Please select the Album Type: 
-            <select name="album_type" id="album_type" required>
-              <option value="">Select</option>
-              <option value="album">Album</option>
-              <option value="vinyl">Vinyl</option>
-              <option value="stream">Stream</option>
+            <b>Enter the date the audio file was created:</b>
+            <input type="datetime-local" name="date_time" id="date_time" required>
+          </p>
+          <p>
+            <b>Was the tape baked?</b> <input type="radio" value="Yes" name="tape_baked" id="tape_baked"> Yes <input type="radio" name="tape_baked" value="No" id="tape_baked"> No
+          </p>
+          <p>
+            <b>Was the azimuth adjusted to the tape?</b> <input type="radio" value="Yes" name="azimuth_adjusted" id="azimuth_adjusted"> Yes <input type="radio" name="azimuth_adjusted" value="No" id="azimuth_adjusted"> No
+          </p>
+          <p>
+            <b>Was the tape wound onto a new reel</b> <input type="radio" name="tape_wound" value="Yes" id="tape_wound"> Yes <input type="radio" name="tape_wound" value="No" id="tape_wound"> No
+          </p>
+          <p>
+            <b>Tape Conditions (select all that apply)</b>
+            <br>
+            <input type="checkbox" value="Starts abruptly" name="starts_abruptly" id="tape_conditions_starts_abruptly">
+            <label for="tape_conditions_starts_abruptly">Starts abruptly</label>
+            <br>
+            <input type="checkbox" value="Ends abruptly" name="ends_abruptly" id="tape_conditions_ends_abruptly">
+            <label for="tape_conditions_ends_abruptly">Ends abruptly</label>
+            <br>
+            <input type="checkbox" value="Ground hum" name="ground_hum" id="tape_conditions_ground_hum">
+            <label for="tape_conditions_ground_hum">Ground hum</label>
+            <br>
+            <input type="checkbox" value="Distortion" name="distortion" id="tape_conditions_distortion">
+            <label for="tape_conditions_distortion">Distortion</label>
+            <br>
+            <input type="checkbox" value="Intermittent dropouts" name="intermittent_dropouts" id="tape_conditions_intermittent_dropouts">
+            <label for="tape_conditions_intermittent_dropouts">Intermittent dropouts</label>
+          </p>
+          <p>
+            <b>Select if the CWF used to normalize and create derivative.</b>
+            <br>
+            <input type="radio" value="N/A" name="cwf_normalisation" id="cwf_normalisation"> None Applicable (N/A)
+            <br>
+            <input type="radio" name="cwf_normalisation" value="Yes" id="cwf_normalisation"> CWF Normalisation
+          </p>
+          <p>
+            <b>Select any audio analysis tools used (select all that apply)</b>
+            <br>
+            <input type="checkbox" value="Audiofile inspector" name="audiofile_inspector" id="audiofile_inspector">
+            <label for="audiofile_inspector">Audiofile Inspector</label>
+            <br>
+            <input type="checkbox" value="Digital error checker" name="digital_error_checker" id="digital_error_checker">
+            <label for="digital_error_checker">Digital Error Checker</label>
+            <br>
+            <input type="checkbox" value="Damage detector" name="damage_detector" id="damage_detector">
+            <label for="damage_detector">Damage Detector</label>
+            <br>
+            <input type="checkbox" value="Applause detector" name="applause_detector" id="applause_detector">
+            <label for="applause_detector">Applause Detector</label>
+            <br>
+            <input type="checkbox" value="MPEG audio check" name="mpeg_audio_check" id="mpeg_audio_check">
+            <label for="mpeg_audio_check">MPEG Audio Check</label>
+            <br>
+            <input type="checkbox"  name="media_info" id="media_info">
+            <label for="media_info">Media Info</label>
+          </p>
+          <p>
+            <b>Select the decoder you used:</b> <select name="decoder" id="decoder" required>
+              <option value="">Please Select</option>
+              <option value="dolby_digital">Dolby Digital (AC-3)</option>
+              <option value="DTS">DTS (Digital Theater Systems)</option>
+              <option value="ACC">AAC (Advanced Audio Coding)</option>
+              <option value="FLAC">FLAC (Free Lossless Audio Codec)</option>
+              <option value="ALAC">ALAC (Apple Lossless Audio Codec)</option>
             </select>
           </p>
           <p>
-            Please select the Release Type: 
-            <select name="release_type" id="release_type" required>
-              <option value="">Select</option>
-              <option value="original">Original</option>
-              <option value="cover">Cover</option>
-              <option value="reRelease">Re-release</option>
-              <option value="revistedReRelease">Revisited Re-release</option>
+            <b>Select the processing methods used (select all that apply)</b>
+            <br>
+            <input type="checkbox" value="Equalization" name="equalization" id="equalization">
+            <label for="equalization">Equalization (EQ)</label>
+            <br>
+            <input type="checkbox" value="Compression" name="compression" id="compression">
+            <label for="compression">Compression</label>
+            <br>
+            <input type="checkbox" value="Limiting" name="limiting" id="limiting">
+            <label for="limiting">Limiting</label>
+            <br>
+            <input type="checkbox" value="Reverb" name="reverb" id="reverb">
+            <label for="reverb">Reverb</label>
+            <br>
+            <input type="checkbox" value="Delay" name="delay" id="delay">
+            <label for="delay">Delay</label>
+          </p>
+          <p>
+            <b>Select the tools used (select all that apply)</b>
+            <br>
+            <input type="checkbox" value="Pro Tools" name="pro_tools" id="pro_tools">
+            <label for="pro_tools">Pro Tools</label>
+            <br>
+            <input type="checkbox" value="Logic Pro" name="logic_pro" id="logic_pro">
+            <label for="logic_pro">Logic Pro</label>
+            <br>
+            <input type="checkbox" value="Cubase" name="cubase" id="cubase">
+            <label for="cubase">Cubase</label>
+            <br>
+            <input type="checkbox" value="Ableton live" name="ableton_live" id="ableton_live">
+            <label for="ableton_live">Ableton Live</label>
+            <br>
+            <input type="checkbox" value="Studio one" name="studio_one" id="studio_one">
+            <label for="studio_one">Studio One</label>
+          </p>
+          <p>
+            <b>Select the encoder you used:</b> <select name="encoder" id="encoder">
+              <option value="">Please Select</option>
+              <option value="lame_mp3_encoder">LAME MP3 Encoder</option>
+              <option value="apple_aac_encoder">Apple AAC Encoder</option>
+              <option value="ogg_vorbis_encoder">Ogg Vorbis Encoder</option>
+              <option value="FLAC_encoder">FLAC Encoder</option>
+              <option value="WAV_encoder">WAV Encoder</option>
             </select>
           </p>
-          <p id="audio_frame_rate">
-              <!-- might need to change to dropdown selection for clarity -->
-            Please select the frame rate for your aduio file
-              <!-- <b><label for="44.1 kHz">44.1 kHz</label></b>
-              <input type="radio" name="audio_frame_rate" id="44.1 kHz" value="44.1 kHz" required>
-              <b><label for="48 kHz">48 kHz</label></b>
-              <input type="radio" name="audio_frame_rate" id="48 kHz" value="48 kHz" required>
-              <b><label for="128 kHz">128 kHz</label></b>
-              <input type="radio" name="audio_frame_rate" id="128 kHz" value="128 kHz" required>
-              <b><label for="192 kHz">192 kHz</label></b>
-              <input type="radio" name="audio_frame_rate" id="192 kHz" value="192 kHz" required>
-              <b><label for="256 kHz">256 kHz</label></b>
-              <input type="radio" name="audio_frame_rate" id="256 kHz" value="256 kHz" required> -->
-            <select name="audio_frame_rate" id="audio_frame_rate" required>
-              <option value="">Select</option>
-              <option value="44.1 kHz">44.1 kHz</option>
-              <option value="48 kHz">48 kHz</option>
-              <option value="128 kHz">128 kHz</option>
-              <option value="192 kHz">192 kHz</option>
-              <option value="256 kHz">256 kHz</option>
+          <p>
+            <b>Select the security measures taken (select all that apply)</b>
+            <br>
+            <input type="checkbox" value="Encrypted storage" name="encrypted_storage" id="encrypted_storage">
+            <label for="encrypted_storage">Encrypted Storage</label>
+            <br>
+            <input type="checkbox" value="User authentication" name="user_authentication" id="user_authentication">
+            <label for="user_authentication">User Authentication</label>
+            <br>
+            <input type="checkbox" value="Access control" name="access_control" id="access_control">
+            <label for="access_control">Access Control</label>
+            <br>
+            <input type="checkbox" value="Data backup" name="data_backup" id="data_backup">
+            <label for="data_backup">Data Backup</label>
+            <br>
+            <input type="checkbox" value="Secure file transfer" name="secure_file_transfer" id="secure_file_transfer">
+            <label for="secure_file_transfer">Secure File Transfer</label>
+          </p>
+          <p>
+            <b>Select all the restoration techniques used (select all that apply)</b>
+            <br>
+            <input type="checkbox" value="Azimuth" name="azimuth" id="azimuth">
+            <label for="azimuth">Azimuth</label>
+            <br>
+            <input type="checkbox" value="Declicker" name="declicker" id="declicker">
+            <label for="declicker">Declicker</label>
+            <br>
+            <input type="checkbox" value="Declipper" name="declipper" id="declipper">
+            <label for="declipper">Declipper</label>
+            <br>
+            <input type="checkbox" value="Denoiser" name="denoiser" id="denoiser">
+            <label for="denoiser">Denoiser</label>
+            <br>            
+            <input type="checkbox" value="Descratcher" name="descratcher" id="descratcher">
+            <label for="descratcher">Descratcher</label>
+            <br>
+            <input type="checkbox" value="Playback EQ" name="playback_eq" id="playback_eq">
+            <label for="playback_eq">Playback EQ</label>
+            <br>
+            <input type="checkbox" value="Special dethiss" name="special_dethiss" id="special_dethiss">
+            <label for="special_dethiss">Special Dethiss</label>
+            <br>
+            <input type="checkbox" value="Debuzz" name="debuzz" id="debuzz">
+            <label for="debuzz">Debuzz</label>
+          </p>
+          <p>
+            <b>Select the conversion tools used (select all that apply)</b>
+            <br>
+            <input type="checkbox" value="dBpoweramp" name="dBpoweramp" id="dBpoweramp">
+            <label for="dBpoweramp">dBpoweramp</label>
+            <br>
+            <input type="checkbox" value="Audacity" name="audacity" id="audacity">
+            <label for="audacity">Audacity</label>
+            <br>
+            <input type="checkbox" value="Adobe audition" name="adobe_audition" id="adobe_audition">
+            <label for="adobe_audition">Adobe Audition</label>
+            <br>
+            <input type="checkbox" value="XLD (X Lossless Decoder)" name="xld_lossless_decoder" id="xld_lossless_decoder">
+            <label for="xld_lossless_decoder">XLD (X Lossless Decoder)</label>
+            <br>
+            <input type="checkbox" value="Foobar2000" name="foobar2000" id="foobar2000">
+            <label for="foobar2000">Foobar2000</label>
+          </p>
+          <p>
+            <b>Select the tektronix tools used (select all that apply)</b>
+            <br>
+            <input type="checkbox" value="WFM5200 Waveform monitor" name="waveform_monitor" id="waveform_monitor">
+            <label for="waveform_monitor">WFM5200 Waveform Monitor</label>
+            <br>
+            <input type="checkbox" value="SPG8000A Master sync / Master clock reference generator" name="master_sync" id="master_sync">
+            <label for="master_sync">SPG8000A Master Sync / Master Clock Reference Generator</label>
+            <br>
+            <input type="checkbox" value="PRISM Media analysis platform" name="media_analysis_platform" id="media_analysis_platform">
+            <label for="media_analysis_platform">PRISM Media Analysis Platform</label>
+            <br>
+            <input type="checkbox" value="WVR8300 Waveform Rasterizer" name="waveform_rasterizer" id="waveform_rasterizer">
+            <label for="waveform_rasterizer">WVR8300 Waveform Rasterizer</label>
+          </p>
+          <p>
+            <b>Select the video tools used:</b> <select name="video_tools" id="video_tools">
+              <option value="">Please Select</option>
+              <option value="adobe_premire_pro">Adobe Premiere Pro</option>
+              <option value="final_cut_pro">Final Cut Pro</option>
+              <option value="davinci_resolve">DaVinci Resolve</option>
+              <option value="avid_media_composer">Avid Media Composer</option>
+              <option value="sony_vegas_pro">Sony Vegas Pro</option>
+              <option value="Other">Other</option>
+              <option value="None">None</option>
             </select>
           </p>
-          <p id="audio_condition">
-              Please add any additional notes
-              <textarea name="audio_notes" id="audio_notes" cols="50" rows="5"></textarea>
+          <p>
+            <b>Select any workflow design tools used (select all that apply)</b>
+            <br>
+            <input type="checkbox" value="Trello" name="trello" id="trello">
+            <label for="trello">Trello</label>
+            <br>
+            <input type="checkbox" value="Asana" name="asana" id="asana">
+            <label for="asana">Asana</label>
+            <br>
+            <input type="checkbox" value="Monday.com" name="monday" id="monday">
+            <label for="monday">Monday.com</label>
+            <br>
+            <input type="checkbox" value="Wrike" name="wrike" id="wrike">
+            <label for="wrike">Wrike</label>
+            <br>
+            <input type="checkbox" value="Jira" name="jira" id="jira">
+            <label for="jira">Jira</label>
           </p>
-          <!-- <p id="upload_audio">
-              Please upload your audio file
-              <input type="file" name="upload_audio" id="upload_audio" type="file">
-          </p> -->
+          <p>
+            <b>Add any additional comments below:</b>
+            <br>
+            <textarea name="additional_comments" id="additional_comments" cols="30" rows="10"></textarea>
+          </p>
           <button type="submit">Complete Survey</button>
+          <br>
         </form>
-        
-
-    
-
-  <!-- Ticket Modal -->
-  <!-- <div id="ticketModal" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-      <header class="w3-container w3-teal w3-center w3-padding-32"> 
-        <span onclick="document.getElementById('ticketModal').style.display='none'" 
-       class="w3-button w3-teal w3-xlarge w3-display-topright">×</span>
-        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Tickets</h2>
-      </header>
-      <div class="w3-container">
-        <p><label><i class="fa fa-shopping-cart"></i> Tickets, $15 per person</label></p>
-        <input class="w3-input w3-border" type="text" placeholder="How many?">
-        <p><label><i class="fa fa-user"></i> Send To</label></p>
-        <input class="w3-input w3-border" type="text" placeholder="Enter email">
-        <button class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">PAY <i class="fa fa-check"></i></button>
-        <button class="w3-button w3-red w3-section" onclick="document.getElementById('ticketModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
-        <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- The Contact Section -->
-  <!-- <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
-    <h2 class="w3-wide w3-center">Contact Me</h2>
-    <p class="w3-opacity w3-center"><i>Need to get in touch? Drop a note!</i></p>
-    <div class="w3-row w3-padding-32">
-      <div class="w3-col m6 w3-large w3-margin-bottom">
-        <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
-        <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
-        <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
-        <i class="fa fa-envelope" style="width:30px"> </i> SPILL: @johnnyhundo<br>
-      </div>
-      <div class="w3-col m6">
-        <form action="/action_page.php" target="_blank">
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-            <div class="w3-half">
-              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-            </div>
-            <div class="w3-half">
-              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-            </div>
-          </div>
-          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
-          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
-        </form>
-      </div>
-    </div>
-  </div> -->
 {% endblock %}

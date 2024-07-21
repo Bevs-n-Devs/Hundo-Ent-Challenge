@@ -10,6 +10,25 @@
 <style>
 body {font-family: "Lato", sans-serif}
 .mySlides {display: none}
+
+.table-container {
+  overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+table {
+  width: 100%; /* Full width of container */
+  border-collapse: collapse; /* Collapses table borders */
+}
+
+th, td {
+  border: 1px solid #ddd; /* Border for table cells */
+  padding: 8px; /* Padding for table cells */
+  text-align: left; /* Align text to the left */
+}
+
+th {
+  background-color: #f2f2f2; /* Background color for table headers */
+}
 </style>
 </head>
 <body>
@@ -18,9 +37,10 @@ body {font-family: "Lato", sans-serif}
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card">
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-    <a href="#About" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About</a>
-    <a href="#survey" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Survey</a>
+    <a href="{{ url_for('home') }}" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="/#About" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About</a>
+    <a href="/#survey" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Survey</a>
+    <a href="{{ url_for('get_results') }}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Results</a>
     <!-- <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a> -->
     <!-- <div class="w3-dropdown-hover w3-hide-small">
       <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>     
@@ -36,8 +56,9 @@ body {font-family: "Lato", sans-serif}
 
 <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
 <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <a href="#About" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">About</a>
-  <a href="#survey" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Survey</a>
+  <a href="/#About" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">About</a>
+  <a href="/#survey" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Survey</a>
+  <a href="{{ url_for('get_results') }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Results</a>
   <!-- <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a> -->
   <!-- <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a> -->
 </div>

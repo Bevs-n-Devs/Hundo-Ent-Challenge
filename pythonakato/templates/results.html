@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Survey Results</h2>
+
+Please view the results of your engineers below, with the most recent being at the bottom.
+
+<div class="table-container" id="results">
+    {% if get_data %}
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+          <thead>
+            <tr style="background-color: #f2f2f2;">
+              <th style="border: 1px solid #ddd; padding: 8px;">Data ID</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Music Name</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Genre Type</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Date & Time</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Tape Baked</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Azimuth Adjusted</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Tape Wound</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Tape Conditions</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">CWF Normalisation</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Audio Analysis</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Decoder</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Processing</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Tools</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Encoder</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Security</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Restoration</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Conversion</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Tektronix</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Video</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Workflow</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Additional Comments</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for info in get_data %}
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.id }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.music_name }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.genre_type }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.artist_name }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.date_time }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.tape_baked }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.azimuth_adjusted }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.tape_wound }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.tape_conditions }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.audio_analysis }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.decoder }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.processing }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.tools_used }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.encoder }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.security }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.restoration }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.conversion }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.tektronix }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.video }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.workflow }}</td>
+              <td style="border: 1px solid #ddd; padding: 8px;">{{ info.additional_comments }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>        
+        {% endif %}
+</div>
+{% endblock %}
