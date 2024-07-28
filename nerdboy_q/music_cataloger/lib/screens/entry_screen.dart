@@ -1,13 +1,11 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:music_cataloger/models/audio_record.dart';
+// import 'package:music_cataloger/models/audio_record.dart';
 import 'package:music_cataloger/utils/helpers.dart';
 import 'package:music_cataloger/widgets/checkbox_widget.dart';
-import 'package:music_cataloger/widgets/date_picker_fld.dart';
+// import 'package:music_cataloger/widgets/date_picker_fld.dart';
 import 'package:music_cataloger/widgets/fld_label.dart';
 import 'package:music_cataloger/widgets/form_dropdown_menu.dart';
 import 'package:music_cataloger/widgets/form_text_input.dart';
@@ -76,8 +74,8 @@ class _EntryScreenState extends State<EntryScreen> {
   @override
   Widget build(BuildContext context) {
     
-  final double screen_height = MediaQuery.of(context).size.height;
-  final double screen_width = MediaQuery.of(context).size.width;
+    screen_height = MediaQuery.of(context).size.height;
+    screen_width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color.fromARGB(199, 13, 10, 18),
       body: screen_width > 600 
@@ -107,16 +105,14 @@ class _EntryScreenState extends State<EntryScreen> {
               ),
             ],
           ),
-          // Padding(padding: EdgeInsets.fromLTRB(0,screen_width*0.01,0,screen_width*0.01)),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(padding: EdgeInsets.fromLTRB(0,screen_height*0.1,0,0)),
-              const CustomLabel(labelText: "Condition")
+              const CustomLabel(labelText: "Media Formatting")
             ],
           ),
-          // Padding(padding: EdgeInsets.all(screen_width*0.01)),
           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -126,6 +122,31 @@ class _EntryScreenState extends State<EntryScreen> {
               CustomCheckBoxFld(checkBoxText: "Baked"),
               CustomCheckBoxFld(checkBoxText: "New Reel"),
               CustomCheckBoxFld(checkBoxText: "CWF"),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(padding: EdgeInsets.fromLTRB(0,screen_height*0.1,0,0)),
+              const CustomLabel(labelText: "Condition")
+            ],
+          ),
+          const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomCheckBoxFld(checkBoxText: "Starts Abruptly"),
+                  CustomCheckBoxFld(checkBoxText: "Ends Abruptly"),
+                  CustomCheckBoxFld(checkBoxText: "Ground Hum"),
+                  CustomCheckBoxFld(checkBoxText: "Distortion"),
+                  CustomCheckBoxFld(checkBoxText: "Intermittent Dropouts"),
+                ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(padding: EdgeInsets.fromLTRB(0,screen_height*0.1,0,screen_height*0.1)),
+              FormTextInput(labelText: "Other Conditions", callback: updateRecord, fieldType: FieldType.fieldDetails, isMultiLine: true,)
             ],
           ),
           Padding(padding: EdgeInsets.fromLTRB(0,screen_width*0.010,0,0)),

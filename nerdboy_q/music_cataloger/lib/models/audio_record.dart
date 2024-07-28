@@ -1,11 +1,9 @@
-import 'dart:ffi';
-
 class AudioRecord {
   final String trackName;
   final String albumName;
   final String albumType;
   final String artistName;
-  final Float frequency;
+  final double frequency;
   final String releaseType;
   final String genre;
 
@@ -36,7 +34,7 @@ class AudioRecord {
     String? albumName,
     String? albumType,
     String? artistName,
-    Float? frequency,
+    double? frequency,
     String? releaseType,
     String? genre,
   }) {

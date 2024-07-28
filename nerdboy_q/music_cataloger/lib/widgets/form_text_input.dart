@@ -7,11 +7,14 @@ class FormTextInput extends StatelessWidget {
   final String labelText;
   final Function(String,FieldType) callback;
   final FieldType fieldType;
+  final bool isMultiLine;
   const FormTextInput({
     super.key, 
     required this.labelText, 
     required this.callback,
-    required this.fieldType}
+    required this.fieldType,
+    this.isMultiLine = false
+    }
   );
   
 
@@ -34,7 +37,8 @@ class FormTextInput extends StatelessWidget {
             CustomTextField(
               hintText: hintText, 
               callback: callback,
-              fieldType: fieldType
+              fieldType: fieldType,
+              isMultiLine: isMultiLine
             ),
           ],
         )

@@ -11,4 +11,5 @@ enum FieldType {
   fieldReleaseDate,
   fieldReleaseType,
   fieldTrackName,
+  fieldDetails
 }

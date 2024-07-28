@@ -29,7 +29,7 @@ class _CustomCheckBoxFldState extends State<CustomCheckBoxFld> {
       //   boxShadow: [BoxShadowPurple]
       // ),
       child: SizedBox(
-        width: screen_width*0.1,
+        width: screen_width*0.15,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
