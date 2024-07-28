@@ -30,14 +30,14 @@ class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
     return Container(
       decoration: boxDecoration_purpleAccent,
       child: SizedBox(
-        width: 300,
-        height: 50,
+        width: screen_width*0.45,
+        height: screen_height*0.06,
         child: 
           Material(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(screen_width*0.005),
             child: DropdownButton<String>(
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(screen_width*0.005),
               elevation: 8,
               focusColor: Colors.white,
               autofocus: true,  // forces the focus color before a selection is made

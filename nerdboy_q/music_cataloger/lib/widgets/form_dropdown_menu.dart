@@ -32,7 +32,7 @@ class FormDropDownInput extends StatelessWidget {
             CustomLabel(labelText: labelText),
           ],
         ),
-        const Padding(padding: EdgeInsets.all(5)),
+        Padding(padding: EdgeInsets.all(screen_width*0.005,)),
         Row(
           children: [
             CustomDropdownMenu(opts: options, callback: callback, fieldType: fieldType,)

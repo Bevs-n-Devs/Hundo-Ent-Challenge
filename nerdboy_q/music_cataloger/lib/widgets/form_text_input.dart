@@ -28,7 +28,7 @@ class FormTextInput extends StatelessWidget {
             CustomLabel(labelText: labelText),
           ],
         ),
-        const Padding(padding: EdgeInsets.all(5)),
+        Padding(padding: EdgeInsets.all(screen_width*.005)),
         Row(
           children: [
             CustomTextField(

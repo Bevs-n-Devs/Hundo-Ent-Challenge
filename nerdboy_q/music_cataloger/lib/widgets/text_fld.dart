@@ -24,8 +24,8 @@ class _CustomTextFldState extends State<CustomTextField> {
       return Container(
         decoration: boxDecoration_purpleAccent,
         child: SizedBox(
-          width: 300,
-          height: 50,
+        width: screen_width*0.45,
+        height: screen_height*0.06,
           child: TextField(
             onChanged: (value) {
               widget.callback(value, widget.fieldType);
@@ -41,7 +41,7 @@ class _CustomTextFldState extends State<CustomTextField> {
               filled: true,
               fillColor: Colors.white,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(screen_width*.005),
                 borderSide: const BorderSide(
                   color: Colors.grey,
                 )

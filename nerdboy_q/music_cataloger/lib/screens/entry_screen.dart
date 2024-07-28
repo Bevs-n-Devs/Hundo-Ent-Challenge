@@ -1,11 +1,14 @@
 import 'dart:ffi';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:music_cataloger/models/audio_record.dart';
 import 'package:music_cataloger/utils/helpers.dart';
+import 'package:music_cataloger/widgets/checkbox_widget.dart';
 import 'package:music_cataloger/widgets/date_picker_fld.dart';
+import 'package:music_cataloger/widgets/fld_label.dart';
 import 'package:music_cataloger/widgets/form_dropdown_menu.dart';
 import 'package:music_cataloger/widgets/form_text_input.dart';
 
@@ -73,8 +76,8 @@ class _EntryScreenState extends State<EntryScreen> {
   @override
   Widget build(BuildContext context) {
     
-  screen_height = MediaQuery.of(context).size.height;
-  screen_width = MediaQuery.of(context).size.width;
+  final double screen_height = MediaQuery.of(context).size.height;
+  final double screen_width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color.fromARGB(199, 13, 10, 18),
       body: screen_width > 600 
@@ -82,7 +85,7 @@ class _EntryScreenState extends State<EntryScreen> {
         children: [
           Row(
             children: [
-              const Padding(padding: EdgeInsets.all(15)),
+              Padding(padding: EdgeInsets.all(screen_width*0.015)),
               Column(
                 children: [
                   FormTextInput(labelText: "Track Name", callback: updateRecord, fieldType: FieldType.fieldTrackName,),
@@ -92,7 +95,7 @@ class _EntryScreenState extends State<EntryScreen> {
                 ]
           
               ),
-              const Padding(padding: EdgeInsets.all(15)),
+              Padding(padding: EdgeInsets.all(screen_width*0.01)),
               Column(
                 children:[
                   FormTextInput(labelText: "Genre", callback: updateRecord, fieldType: FieldType.fieldGenreName,),
@@ -104,10 +107,32 @@ class _EntryScreenState extends State<EntryScreen> {
               ),
             ],
           ),
-          const Padding(padding: EdgeInsets.all(15)),
+          // Padding(padding: EdgeInsets.fromLTRB(0,screen_width*0.01,0,screen_width*0.01)),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Padding(padding: EdgeInsets.all(15)),
+              Padding(padding: EdgeInsets.fromLTRB(0,screen_height*0.1,0,0)),
+              const CustomLabel(labelText: "Condition")
+            ],
+          ),
+          // Padding(padding: EdgeInsets.all(screen_width*0.01)),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Padding(padding: EdgeInsets.fromLTRB(50,0,0,0)),
+              CustomCheckBoxFld(checkBoxText: "Azimuth"),
+              CustomCheckBoxFld(checkBoxText: "Baked"),
+              CustomCheckBoxFld(checkBoxText: "New Reel"),
+              CustomCheckBoxFld(checkBoxText: "CWF"),
+            ],
+          ),
+          Padding(padding: EdgeInsets.fromLTRB(0,screen_width*0.010,0,0)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(padding: EdgeInsets.fromLTRB(0,screen_width*0.01,0,0)),
               Center(
                 widthFactor: 4,
                 child: ElevatedButton(
@@ -116,7 +141,7 @@ class _EntryScreenState extends State<EntryScreen> {
                   },
                   style: ButtonStyle(
                     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)
+                        borderRadius: BorderRadius.circular(screen_width*0.005)
                       )
                     ),
                     
@@ -151,8 +176,9 @@ class _EntryScreenState extends State<EntryScreen> {
                   FormDropDownInput(labelText: "Frequency", options: freqOpts, callback: updateRecord, fieldType: FieldType.fieldFrequency,),
                   FormDropDownInput(labelText: "Release Type", options: releaseTypes, callback: updateRecord, fieldType: FieldType.fieldReleaseType,),
                   FormDropDownInput(labelText: "Media Type", options: mediaTypes, callback: updateRecord, fieldType: FieldType.fieldMediaType,),
+                  const CustomCheckBoxFld(checkBoxText: "Baked"),
                   // CustomDatePicker(restorationId: 'releaseDate',)
-                  const Padding(padding: EdgeInsets.all(15)),
+                  Padding(padding: EdgeInsets.all(screen_width*0.01)),
               Center(
                 // widthFactor: 4,
                 child: ElevatedButton(
@@ -161,7 +187,7 @@ class _EntryScreenState extends State<EntryScreen> {
                   },
                   style: ButtonStyle(
                     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)
+                        borderRadius: BorderRadius.circular(screen_width*0.005)
                       )
                     ),
                     
