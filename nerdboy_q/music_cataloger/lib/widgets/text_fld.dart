@@ -26,8 +26,14 @@ class _CustomTextFldState extends State<CustomTextField> {
       return Container(
         decoration: boxDecoration_purpleAccent,
         child: SizedBox(
-        width: isMultiLine ? screen_width*0.8 : screen_width*0.45,
-        height: isMultiLine ? screen_height*0.2 : screen_height*0.06,
+        width: isMultiLine || (screen_width < 500)
+          ? screen_width*0.8
+          : screen_width*0.45,
+        height: isMultiLine 
+          ? screen_height*0.2 
+          : screen_height > 400
+            ? screen_height*0.06
+            : screen_height*0.12,
           child: TextField(
             minLines: isMultiLine ? 6 : 1,
             maxLines: isMultiLine ? 6 : 1,

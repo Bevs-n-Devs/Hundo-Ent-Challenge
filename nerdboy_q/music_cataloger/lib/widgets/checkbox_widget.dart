@@ -23,13 +23,8 @@ class _CustomCheckBoxFldState extends State<CustomCheckBoxFld> {
   Widget build(BuildContext context) {
     final String text = widget.checkBoxText;
     return Center(
-      // decoration: BoxDecoration(
-      //   borderRadius: BorderRadius.circular(5),
-      //   color: Colors.black,
-      //   boxShadow: [BoxShadowPurple]
-      // ),
       child: SizedBox(
-        width: screen_width*0.15,
+        width: screen_width > 500 ? screen_width*0.25 : screen_width*0.48,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
